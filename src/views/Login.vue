@@ -13,7 +13,7 @@
           <el-input v-model="loginForm.password" type="password" auto-complete="off" placeholder="请输入密码" prefix-icon="el-icon-lock" @keyup.enter.native="handleLogin" />
         </el-form-item>
         <el-form-item>
-          <el-checkbox v-model="loginForm.rememberMe">记住我</el-checkbox>
+          <el-checkbox v-model="loginForm.rememberMe">自动登录</el-checkbox>
         </el-form-item>
         <el-form-item>
           <el-button :loading="loading" size="small" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
@@ -37,8 +37,8 @@ export default {
     return {
       Background,
       loginForm: {
-        username: 'admin',
-        password: 'admin123',
+        username: 'supercat',
+        password: '123456',
         rememberMe: true
       },
       loginRules: {
@@ -69,7 +69,7 @@ export default {
           login(data).then(res => {
             this.loading = false
             setToken(res.token)
-            this.$router.push({ path: this.redirect || '/' })
+            this.$router.push('/home')
           }).catch(() => {
             this.loading = false
           })
